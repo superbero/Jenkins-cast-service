@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{.Values.volumes.persistentvolumeclaim.cast_db.name }}
+  namespace: {{.Values.namespace }}
+  labels:
+    app: {{.Values.volumes.persistentvolumeclaim.cast_db.name }}
+spec:
+  storageClassName: {{ .Values.volumes.storageClassName }}
+  accessModes:
+  - {{ .Values.volumes.accessModes}}
+  resources:
+    requests:
+      storage: {{.Values.volumes.persistentvolumeclaim.size }}
+  # selector:
+  #   matchLabels:
+  #     labels: {{.Values.volumes.persistentvolume.name }} #postgres-data
+

@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configmap.postgres_cast.name }} #postgres-cast-configmap
+  labels:
+    app: postgres-cast-db
+  namespace: {{ .Values.namespace }} #dev
+data:
+  POSTGRES_USER: {{ .Values.configmap.postgres_cast.POSTGRES_PASSWORD}} #"cast"
+  POSTGRES_PASSWORD: {{ .Values.configmap.postgres_cast.POSTGRES_PASSWORD }} #"password"
+  POSTGRES_DB: {{ .Values.configmap.postgres_cast.POSTGRES_DB }} #"cast_db"
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cast-service-config
+  namespace: {{ .Values.namespace }} #dev
+  labels:
+    app: cast-service-config
+data:
+  DATABASE_URI: "postgresql://cast:password@postgres-cast-service/cast_db"
+
