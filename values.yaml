@@ -9,7 +9,7 @@ configmap:
   
   cast_service:
     name: cast-service-config
-    uri: "postgresql://cast:password@pg-cast/cast_db"
+    uri: "postgresql://cast:password@pg-cast:5432/cast_db"
 
 Deployment:
   imagePullPolicy: IfNotPresent
@@ -32,7 +32,7 @@ volumes:
   accessModes: ReadWriteMany
   
   persistentvolume:
-    name: postgres-data-jenkins
+    name: postgres-volumes
     size: 10Gi
     volume_path: /Users/admin/volumes
    
@@ -42,7 +42,7 @@ volumes:
     accessModes: ReadWriteMany
 
     cast_db:
-      name: postgres-data-cast
+      name: postgres-cast-data
 
 services:
   postgres_cast:

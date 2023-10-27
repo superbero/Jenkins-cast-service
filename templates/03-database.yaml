@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{.Values.Deployment.cast_db.name }} #postgres-cast-db
-  namespace: {{.Values.namespace }} #dev
+  name: {{ .Values.Deployment.cast_db.name }} #postgres-cast-db
+  namespace: {{ .Values.namespace }} #dev
 spec:
   selector:
     matchLabels:
@@ -17,14 +17,14 @@ spec:
       containers:
       - name: {{.Values.Deployment.cast_db.name }} #postgres-cast-db
         image: {{ .Values.Deployment.postgres.image }} #postgres:12.1-alpine
-        imagePullPolicy: {{ .Values.Deployment.imagePullPolicy}} #IfNotPresent
+        imagePullPolicy: {{ .Values.Deployment.imagePullPolicy }} #IfNotPresent
         ports:
         - containerPort: {{ .Values.Deployment.postgres.ports }} #5432
         envFrom:
           - configMapRef:
               name: {{.Values.configmap.postgres_cast.name }} #postgres-cast-configmap
         volumeMounts:
-        - name: {{ .Values.volumes.persistentvolumeclaim.cast_db.name}} #postgres-data-cast
+        - name: {{ .Values.volumes.persistentvolumeclaim.cast_db.name }} #postgres-data-cast
           mountPath: {{ .Values.Deployment.postgres.mountPath }} #/var/lib/postgresql/data/
       volumes:
         - name: {{ .Values.volumes.persistentvolumeclaim.cast_db.name }}  #postgres-data-cast

@@ -9,19 +9,19 @@ spec:
   selector:
     matchLabels:
       app: {{ .Values.Deployment.cast_service.name}} #cast-svc-deploy
-  replicas: 1
+  replicas: {{.Values.Deployment.replicasCount }}
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: {{ .Values.Deployment.cast_service.name}} #cast-svc-deploy
+        app: {{ .Values.Deployment.cast_service.name }} #cast-svc-deploy
     spec:
       containers:
-      - name: {{ .Values.Deployment.cast_service.name}} #cast-svc-deploy
+      - name: {{ .Values.Deployment.cast_service.name }} #cast-svc-deploy
         image: {{ .Values.Deployment.cast_service.image }}  #superbero/cast_service:latest
         command: ["uvicorn", "app.main:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
-        imagePullPolicy: {{ .Values.Deployment.imagePullPolicy}} #IfNotPresent
+        imagePullPolicy: {{ .Values.Deployment.imagePullPolicy }} #IfNotPresent
         envFrom:
           - configMapRef:
               name: {{ .Values.configmap.cast_service.name }} #cast-service-config

@@ -6,7 +6,7 @@ metadata:
 spec: 
   selector:
     app: {{ .Values.Deployment.cast_db.name }} #postgres-cast-db
-  type: {{.Values.services.postgres_cast.type }} #ClusterIP
+  type: {{ .Values.services.postgres_cast.type }} #ClusterIP
   ports:
   - name: cast-service-tcp
     protocol: TCP
