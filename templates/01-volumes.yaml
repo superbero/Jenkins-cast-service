@@ -4,7 +4,7 @@ metadata:
   name: {{.Values.volumes.persistentvolumeclaim.cast_db.name }}
   namespace: {{.Values.namespace }}
   labels:
-    app: {{.Values.volumes.persistentvolumeclaim.cast_db.name }}
+    app: {{ .Values.volumes.persistentvolumeclaim.cast_db.name }}
 spec:
   storageClassName: {{ .Values.volumes.storageClassName }}
   accessModes:

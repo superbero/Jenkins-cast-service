@@ -9,7 +9,7 @@ configmap:
   
   cast_service:
     name: cast-service-config
-    uri: "postgresql://cast:password@pg-cast:5432/cast_db"
+    uri: "postgresql://cast:password@pg-cast/cast_db"
 
 Deployment:
   imagePullPolicy: IfNotPresent
