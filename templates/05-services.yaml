@@ -1,34 +1,31 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres-cast-service
+  name: {{ .Values.services.postgres_cast.name }} #postgres-cast-service
   namespace: {{ .Values.namespace }} #dev
 spec: 
   selector:
-    app: postgres-cast-db
-  type: ClusterIP
+    app: {{ .Values.Deployment.cast_db.name }} #postgres-cast-db
+  type: {{.Values.services.postgres_cast.type }} #ClusterIP
   ports:
   - name: cast-service-tcp
     protocol: TCP
-    port: 5432
-    targetPort: 5432
-    # If you set the `spec.type` field to `NodePort` and you want a specific port number,
-    # you can specify a value in the `spec.ports[*].nodePort` field.
-    #nodePort: 
+    port: {{ .Values.services.postgres_cast.port }}
+    targetPort: {{ .Values.services.postgres_cast.port }} #5432
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: cast-db-service
+  name: {{ .Values.services.cast_service.name }} #cast-db-service
   namespace: {{ .Values.namespace}} #dev
 spec: 
   selector:
-    app: cast-svc-deploy
-  type: ClusterIP
+    app: {{ .Values.Deployment.cast_service.name }} #cast-svc-deploy
+  type: {{ .Values.services.cast_service.type}}
   ports:
   - name: cast-db-service
-    port: 8000
-    targetPort: 8000 
+    port: {{ .Values.services.cast_service.port }} #8000
+    targetPort: {{ .Values.services.cast_service.port }}
     # If you set the `spec.type` field to `NodePort` and you want a specific port number,
     # you can specify a value in the `spec.ports[*].nodePort` field.
     #nodePort: 

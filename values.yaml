@@ -53,6 +53,6 @@ services:
 
   cast_service:
     type: ClusterIP
-    name: cast
+    name: cast-db-service
     port: 8000
     targetPort: 8000
