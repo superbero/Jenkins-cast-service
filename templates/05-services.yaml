@@ -21,11 +21,9 @@ metadata:
 spec: 
   selector:
     app: {{ .Values.Deployment.cast_service.name }} #cast-svc-deploy
-  type: {{ .Values.services.cast_service.type}}
+  type: {{ .Values.services.cast_service.type }}
   ports:
   - name: cast-db-service
     port: {{ .Values.services.cast_service.port }} #8000
     targetPort: {{ .Values.services.cast_service.port }}
-    # If you set the `spec.type` field to `NodePort` and you want a specific port number,
-    # you can specify a value in the `spec.ports[*].nodePort` field.
-    #nodePort: 
+   

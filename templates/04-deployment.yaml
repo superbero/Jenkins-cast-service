@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: {{ .Values.Deployment.cast_service.name}} #cast-svc-deploy
-  replicas: {{.Values.Deployment.replicasCount }}
+  replicas: {{ .Values.Deployment.replicasCount }}
   strategy:
     type: RollingUpdate
   template:

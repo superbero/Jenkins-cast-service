@@ -9,7 +9,7 @@ configmap:
   
   cast_service:
     name: cast-service-config
-    uri: "postgresql://cast:password@pg-cast:5432/cast_db"
+    uri: "postgresql://cast:password@pg-cast/cast_db"
 
 Deployment:
   imagePullPolicy: IfNotPresent
@@ -37,12 +37,12 @@ volumes:
     volume_path: /Users/admin/volumes
    
   persistentvolumeclaim:
-    size: 2Gi
+    size: 5Gi
     storageClassName: standard
     accessModes: ReadWriteMany
 
     cast_db:
-      name: postgres-cast-data
+      name: postgres-cast-volumes-claims
 
 services:
   postgres_cast:
